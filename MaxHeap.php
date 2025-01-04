@@ -1,10 +1,8 @@
 <?php
 
 
-// Online PHP compiler to run PHP program online
-// Print "Try programiz.pro" message
 //Calculate height of tree h = logd(n)
-//Calculat chilren 
+//Calculate children
 // $first = $d * ($i) + offset(1);
 // $second = $d * ($i) + offset(2); and so on based on $d-ary
 //$last = $d * ($i) + offset($d);
