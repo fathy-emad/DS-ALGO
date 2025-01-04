@@ -41,7 +41,7 @@ class MaxHeap
         // Ensure the Max Heap property
         if ($this->heap[$parent] < $this->heap[$index]) {
             // Swap parent and current node
-            $this->swap($this->heap, $parent, $index);
+            $this->swap($parent, $index);
 
             // Recursively call shiftUp for the parent
             $this->shiftUp($parent);
