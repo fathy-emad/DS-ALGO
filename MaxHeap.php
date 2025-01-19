@@ -12,8 +12,8 @@
 
 class MaxHeap
 {
-    private $d_ary = null;
-    private $heap = [];
+    private int $d_ary;
+    private array $heap;
 
     public function __construct($heap, $d_ary)
     {
@@ -21,14 +21,27 @@ class MaxHeap
         $this->d_ary = $d_ary;
     }
 
+    // Build heap from array
+    public function build(): void
+    {
+        // Start from the last non-leaf node
+        $start = floor(count($this->heap) / $this->d_ary) - 1;
+
+        // Traverse from the last non-leaf node to the root
+        for ($i = $start; $i >= 0; $i--) {
+            $this->shiftDown($i);
+        }
+
+    }
+
     // Swap two elements in the array
-    public function swap($index, $target)
+    public function swap($index, $target): void
     {
         [$this->heap[$index], $this->heap[$target]] = [$this->heap[$index], $this->heap[$target]];
     }
 
     // Shifting-up
-    public function shiftUp($index)
+    public function shiftUp($index): void
     {
         // Base case: stop if we are at the root
         if ($index <= 0) {
@@ -49,7 +62,7 @@ class MaxHeap
     }
 
     // Shift-down
-    public function shiftDown($index, $size = null)
+    public function shiftDown($index, $size = null): void
     {
         $size = $size ?? count($this->heap);
         $largest = $index;
@@ -69,7 +82,7 @@ class MaxHeap
     }
 
     // Insert
-    public function insert($value)
+    public function insert($value): void
     {
         $this->heap[] = $value;
         $index = count($this->heap) - 1;
@@ -96,7 +109,7 @@ class MaxHeap
     }
 
     // Delete
-    public function delete($index)
+    public function delete($index): void
     {
         if (!isset($this->heap[$index])) {
             throw new InvalidArgumentException("Invalid index: $index");
@@ -109,21 +122,8 @@ class MaxHeap
         $this->extractMax();
     }
 
-    // Build heap from array
-    public function build()
-    {
-        // Start from the last non-leaf node
-        $start = floor(count($this->heap) / $this->d_ary) - 1;
-
-        // Traverse from the last non-leaf node to the root
-        for ($i = $start; $i >= 0; $i--) {
-            $this->shiftDown($i);
-        }
-
-    }
-
     // Heap sort
-    public function sort()
+    public function sort(): void
     {
         $size = count($this->heap);
 
@@ -147,13 +147,13 @@ class MaxHeap
     public function merge($otherHeap){}
 
     // Clear heap (new)
-    public function clear()
+    public function clear(): void
     {
         $this->heap = [];
     }
 
     // Change priority
-    public function changePriority()
+    public function changePriority(): void
     {
         $this->heap = [];
     }
@@ -166,13 +166,13 @@ class MaxHeap
     }
 
     // Is empty (new)
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return count($this->heap) === 0;
     }
 
     // Size (new)
-    public function size()
+    public function size(): int
     {
         return count($this->heap);
     }
