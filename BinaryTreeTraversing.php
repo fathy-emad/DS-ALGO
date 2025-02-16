@@ -17,8 +17,8 @@ class Node {
 class BinaryTree {
     public $root;
 
-    public function __construct() {
-        $this->root = null;
+    public function __construct($binaryTree) {
+        $this->root = $binaryTree;
     }
 
     // Preorder Traversal (Root, Left, Right)
@@ -47,7 +47,7 @@ class BinaryTree {
 }
 
 // Creating Binary Tree
-$tree = new BinaryTree();
+$tree = new BinaryTree(null);
 $tree->root = new Node(1);
 $tree->root->left = new Node(2);
 $tree->root->right = new Node(3);
